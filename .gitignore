@@ -1,0 +1,12 @@
+.idea/
+app/src/debug/
+app/src/release/
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
