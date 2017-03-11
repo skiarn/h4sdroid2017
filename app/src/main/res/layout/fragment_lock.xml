@@ -16,5 +16,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
+        android:text="unknown device"
         android:textAppearance="?attr/textAppearanceListItem" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:layout_weight="0.05"
+        android:orientation="horizontal" >
+
+    <ImageButton
+        android:layout_alignParentRight="true"
+        android:background="@color/colorBackground"
+        android:id="@+id/lockbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_lock_black_24dp"/>
+    </RelativeLayout>
+
 </LinearLayout>
