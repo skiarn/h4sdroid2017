@@ -1,5 +1,6 @@
 package com.example.h4s.hubdroid;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,12 @@ import com.example.h4s.hubdroid.dummy.DummyContent;
 
 public class MainActivity extends AppCompatActivity  implements LockFragment.OnListFragmentInteractionListener {
 
+    NotificationCompat.Builder weatherNotificationS =
+            new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
+                    .setContentTitle("H4S Hub")
+                    .setContentText("Det kommer att bli fint väder imorgon");
+
     private TextView mTextMessage;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -28,6 +36,10 @@ public class MainActivity extends AppCompatActivity  implements LockFragment.OnL
                 case R.id.navigation_home:
                     closeContainerFragment();
                     mTextMessage.setText(R.string.title_home);
+                    int mNotificationId = 001;
+                    NotificationManager mNotifyMgr =
+                            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    mNotifyMgr.notify(mNotificationId, weatherNotificationS.build());
                     return true;
                 case R.id.navigation_dashboard:
                     closeContainerFragment();
@@ -40,6 +52,7 @@ public class MainActivity extends AppCompatActivity  implements LockFragment.OnL
                 case R.id.navigation_notifications:
                     closeContainerFragment();
                     mTextMessage.setText(R.string.title_notifications);
+                    WheaterService.execute();
                     return true;
                 case R.id.navigation_lock:
                         getSupportFragmentManager().beginTransaction()
